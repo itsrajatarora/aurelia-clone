@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- @itsrajatarora -->
+<html lang="en" ng-app="storeApp"
+ng controller="storeController" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA" content="IE=edge">
+	<meta mame="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title ng-bind="$root.title + ' | Aurelia' ">Welcome | Aurelia</title>
+	<base href="/">
+
+	 <!-- Le styles --> 
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animations.css"/>
+    <link rel="stylesheet" type="text/css" href="css/loading-bar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="css/angucomplete-alt.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-plain.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+    	[ng-cloak] {
+    			display: none;
+    				}
+    </style>
+</head>
+<body ng-cloak>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-header">
+		<a href="/"><img src="../../images/logo-white.png" class="hidden-xs hidden-sm col-md-offset-1" style="width: 116px; margin-left: 0px; margin-top: 0px"></a>
+	</div>
+	<div id="navbar" class="">
+		<a ng-click="menu!=menu" class="visible-xs">
+			<i class="fa fa-bars fa-fw fa-3x fa-inverse pull-left"></i>
+		</a>
+		<div angucomplete-alt id="depts" placeholder="Search Jaldila..." pause="300" selected-objects="selectedDepts" remote-url="http://localhost:8080/api/search?s=" search-fields="Prodcut.name" title-fields="Product.name" minlength="1" maxlength="20" description-field="name" override-suggestions="true" match-class="highlight" autocapitalize="on" autocorrect="off" input-class"form-control form-inline form-control-small" class="col-log-8 col-md-6 col-sm-6 col-xs-7 col-lg-offset-1 depts" ng-pattern="/^[A-Za-z]+$/" image-fields="Product.name">
+		</div>
+
+<!-- remote-url-response-formatter="addImageUrlToObject" -->
+
+		<span class="cart-toggle hidden-xs hidden-sm navbar-right" id="cart-toggle" style="margin-top: 4px; padding-right:4px !important; margin-right: 4px !important; cursor:hand; font-size: 18px; vertical-align: middle" ng-disabled="cart.getTotalCount() < 1" data-displacement="bottom" data-trigger="focus" data-container="body" data-content="Item(s) succesfully added to cart!">
+			<strong>{{cart.getTotalPrice() | currency:"&#8377;"}}</strong>
+			<span class="muted hidden-xs">for</span>
+			<strong>{{cart.getTotalCount()}}&nbsp;items</strong>
+		</span>
+		<div class="xs-btn visible-xs visible-sm hidden-md pull-right col-xs-2" style="margin-right: 15px" data-placement="bottom" data-trigger="focus" data-container="body" data-content="Item(s) added!" ng-click="carted=!carted; phoneCart=!phoneCart" ng-init="phoneCart=false" ng-class="{active : carted}">
+			<i class="fa fa-cart-arrow-down fa-3x fa-inverse"></i>
+			<span id="blog-badge" style="display:block;">{{cart.getTotalCount()}}</span>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top ic-nav-secondary" ng-controller="HeadCtrl" style="margin-top: 36px;">
+	<div class="container">
+		<span ng-show="phoneCart" class="navbar-left col-xs-offset-3" id="cart-toggle" style="position:fixed;margin-top:10px !important;cursor:hand;font-size: 20px;" ng-disabled="cart.getTotalCount() < 1">
+			<strong>{{cart.getTotalPrice() | currency:"&#8377;"}}</strong>
+			<span class="muted">for</span>
+			<strong> {{cart.getTotalCount()}}&nbsp;items</strong>
+		</span>
+		100
