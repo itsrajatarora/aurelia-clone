@@ -87,5 +87,73 @@ ng controller="storeController" xmlns="http://www.w3.org/1999/html">
           	<li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
-            117
+            <li class="divider"></li>
+            <li style="padding-bottom:5px">
+            	<ul class="list-inline">
+            		<li style="padding-left:15px"><a href="#">Terms</a></li>
+            		<li><a href="">Privacy</a></li>
+            		<li><a href="">Refund</a></li>
+            		<li><a href="">Contact</a></li>
+            	</ul>
+            </li>
+           </ul>
+         </div>
+		<a href="/store" class="hidden-sm hidden-xs hidden-md" style="position:absolute;margin-left:50px;margin-top: -5px !important;">
+			<button type="button" class="btn btn-default navbar-btn navbar-left btn-warning">
+				<strong>POPULAR</strong>
+			</button>
+		</a>
 
+		<!-- skipd 133-146 -->
+
+		<div style="margin-left: 200px; margin-top: -2px !important;" class="hidden-xs">
+			<ul class="nav nav-pills animate col-lg-2" ng-repeat="something in somethings">
+				<li role="presentation" class="dropdown position-me nav" ng-class="something.class">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<i ng-class="something.icon"></i>&nbsp;{{ something.name }}&nbsp;
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" id="navigation">
+						<li ng-repeat="child in something.aisles" ng-if="!child.aisles.length">
+							<a style="curson:pointer;" ng-href="/store/{{something.name}}/{{child.name}}">{{ child.display_name }}</a>
+						</li>
+						<li class="dropdown-submenu" ng-repeat="subchild in something.aisles" ng-if="subchild.aisles.length">
+                            <a class="dropdown-toggle" style="cursor: pointer;"  ng-href="/store/{{subchild.name}}" ng-class="subchild.class">{{ subchild.display_name }}</a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="aislesubchild in subchild.aisles">
+                                    <a style="cursor: pointer;" ng-href="/store/{{subchild.name}}/{{ aislesubchild.name }}">{{aislesubchild.display_name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="row visible-xs" style="margin-top:-5px;" ng-show="!phoneCart">
+            <ul class="nav nav-pills navbar-nav animate list-inline" ng-repeat="something in somethings">
+                <li ng-class="something.class" class="">
+                    <a href="store/{{ something.name }}" ng-show="something.name!='More'">
+                        {{ something.name }}
+                    </a>
+                </li>              
+                <li class="dropdown" ng-hide="something.name!='More'" style="width:80px !important">
+                    <a class="dropdown-toggle text-center" data-toggle="dropdown">
+                        <span class="">{{ something.name }}</span>
+                    </a>
+                    <ul  class="dropdown-menu dropdown-menu-right" id="navigation" style="position:absolute; width:200px; right:0; margin-top:-5px">
+                        <a href="#" class="list-group-item active">
+                          Cras justo odio
+                        </a>
+                        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item">Morbi leo risus</a>
+                        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                        <a href="#" class="list-group-item">Vestibulum at eros</a>
+                            <a style="cursor: pointer;" class="list-group-item"  ng-repeat="child in something.aisles" ng-if="!child.aisles.length" ng-href="/store/{{ child.name }}">{{ child.display_name }}</a>
+                    </ul>
+                </li>                        
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
