@@ -216,10 +216,103 @@ ng controller="storeController" xmlns="http://www.w3.org/1999/html">
 					<i class="fa fa-times fa-fw x"></i>
                         </a>
                         <button class="btn btn-default btn-danger btn-sm visible-xs btn-item-remove" ng-show="showActions" ng-click="cart.addItem(item._id, item.sku, item.name, item.price, -10000000, item.description)">remove</button>
-                    </td>
+                 </td>
 <!--                     <td class="tdCenter hidden-xs" title="remove from cart">
                     </td> -->
                 </tr>
             </table>
         </div>
-        268
+        
+        <!-- footer -->
+        <div class="btn-sidebar col-xs-12 col-lg-4" ng-show="carted||phoneCart" style="background:rgba(255,255,255,0.8) !important;">
+        	<a href="/checkout" class="hidden-xs">
+        		<button type="button" class="btn btn-block btn-success btn-below" ng-disabled="cart.getTotalCount() < 1" ng-hide="cart.getTotalPrice() < 100">
+        			<span style="font-size:20px; font-family: 'Open Sans',sans-serif;font-weight: 300 "><strong>PROCEED</strong></span>
+        			<i class="fa fa-fw fa-truck fa-flip-horizontal fa-2x"></i>
+        		</button>
+			</a>
+			<button type="button" class="btn btn-block btn-warning" ng-disabled="cart.getTotalCount() < 1" ng-show="cart.getTotalPrice() < 100">
+				<i class="fa fa-fw fa-exclamation-triangle fa-2x pull-left"></i>
+				<span style="font-size:20px;">&#8377;99&nbsp;</span>
+				<span style="font-size: 18px;font-weight:300;text-transform:uppercase; letter-spacing: 1px;">Mininmum</span>
+			</button>
+		</div>
+	</div>
+</div>
+<div class="animate ngbod" ng-view></div>
+<!-- ngbod defined in style.css -->
+
+<a class="btn-link pull-right scrollup">
+	<span class="fa-stack fa-lg">
+		<i class="fa fa-circle-thin fa-stack-2x"></i>
+		<i class="fa fa-angle-up fa-stack-1x" style="line-height: 34px"></i>
+	</span>
+</a>
+	
+	<div class="col-xs-12 menu-in-sidebar" ng-show="menu" ng-init="menu=false">
+		<img class="img-responsive text-center" style="width:100%" src="../../images/fallback.jpg">
+		<ul class="list-group">
+		<a href="#" class="list-group-item active">
+		Cras justo odio
+        </a>
+        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item">Morbi leo risus</a>
+        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </ul>
+
+        <!-- skipping 311-332 -->
+	</div>
+
+	<!-- Le scripts -->
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-animate.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="libs/angular-resource.min.js"></script>
+    <script src="libs/angular-touch.min.js"></script>    
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/holder.min.js"></script>
+    <script src="libs/loading-bar.min.js"></script>
+    <script src="libs/angucomplete-alt.min.js"></script>
+    <script src="libs/ngDialog.min.js"></script>
+    
+    <script src="js/routes.js"></script>
+
+    <script src="js/store/app.js"></script>
+    <script src="js/store/controller.js"></script>
+    <script src="js/store/store.js"></script>
+    <script src="js/store/product.js"></script>
+    <script src="js/store/shoppingCart.js"></script>
+
+    <!-- Nerd Stuff -->
+    <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/services/NerdService.js"></script>
+
+    <!-- Javascripts Placed at the end of the document so the pages load faster -->
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+            $('.scrollup').click(function () {
+                event.preventDefault();
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 600);
+                return false;
+            });
+        });
+        $('#cart-toggle').on('shown.bs.popover', function () {
+            var pop = $(this);
+            setTimeout(function () {
+                pop.popover('hide');
+            }, 2000);
+    });
+    </script>
+</body>
+</html>	
